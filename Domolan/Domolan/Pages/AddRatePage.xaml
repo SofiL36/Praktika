@@ -1,0 +1,54 @@
+﻿<Page x:Class="Domolan.Pages.AddRatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Domolan.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddRatePage">
+
+    <Grid Background="Orange">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.15*"/>
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="0"
+            Orientation="Vertical"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" Height="85" Margin="65,213,61,93" Width="674">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="tName" Grid.Row="0" Grid.Column="0" Text="Тариф:"/>
+                <TextBox Grid.Row="0" Grid.Column="1"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Стоимость тарифа(в месяц):"/>
+                <TextBox x:Name="tArticul" Grid.Row="1" Grid.Column="1"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Скорость интернета:"/>
+                <TextBox  x:Name="tManufactur" Grid.Row="2" Grid.Column="1"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Стоимость услуги Кабельное ТВ(в месяц):"/>
+                <TextBox x:Name="tDescription" Grid.Row="5" Grid.Column="1"/>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center" Margin="192,0,187,0" Width="421">
+            <Button Background="Black" Foreground="White" Width="200" x:Name="btnBack" Content="Назад"/>
+            <Button Background="Black" Foreground="White" Width="200" x:Name="btnChange" Content="Добавить"/>
+        </StackPanel>
+    </Grid>
+</Page>

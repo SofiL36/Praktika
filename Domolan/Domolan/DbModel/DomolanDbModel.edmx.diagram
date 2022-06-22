@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a64d002384da4d4fac2690e251ce3faa" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="DomolanDbModel.Акции" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DomolanDbModel.Договоры" Width="1.5" PointX="6.625" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DomolanDbModel.Оборудование" Width="1.5" PointX="4" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DomolanDbModel.Связи" Width="1.5" PointX="1.625" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DomolanDbModel.Сотрудники" Width="1.5" PointX="3.625" PointY="6.375" IsExpanded="true" />
+        <AssociationConnector Association="DomolanDbModel.FK_Договоры_Акции" ManuallyRouted="false" />
+        <AssociationConnector Association="DomolanDbModel.FK_Договоры_Оборудование" ManuallyRouted="false" />
+        <AssociationConnector Association="DomolanDbModel.FK_Договоры_Связи" ManuallyRouted="false" />
+        <AssociationConnector Association="DomolanDbModel.FK_Договоры_Сотрудники" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DomolanDbModel.Тарифы" Width="2.375" PointX="6.375" PointY="7.25" />
+        <AssociationConnector Association="DomolanDbModel.FK_Договоры_Тарифы" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

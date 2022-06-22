@@ -1,0 +1,24 @@
+﻿<Page x:Class="Domolan.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Domolan.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Grid Background="Orange">
+        <Grid.RowDefinitions>
+        </Grid.RowDefinitions>
+        <Button Content="Администраторы" VerticalAlignment="Top" Height="60" Background="Black" Foreground="White" Margin="0,40,21,0" x:Name="btnadm" />
+        <Button Content="Филиалы" VerticalAlignment="Top" Height="60"  Background="Black" Foreground="White" Margin="10,118,0,0" x:Name="btnfil" Width="390" Grid.Column="1"/>
+        <Button Content="Товары" VerticalAlignment="Top" Height="60"  Background="Black" Foreground="White" Margin="10,40,0,0" x:Name="btnprd" Width="390" Grid.Column="1"/>
+        <Button Content="Сотрудники" Margin="0,118,21,0" VerticalAlignment="Top" Height="60" Background="Black" Foreground="White" x:Name="btnemp" />
+        <Button Content="Тарифы" Margin="201,195,209,0" VerticalAlignment="Top" Height="60" Background="Black" Foreground="White" Grid.ColumnSpan="2" x:Name="btntarif" Click="btntarif_Click" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+    </Grid>
+</Page>

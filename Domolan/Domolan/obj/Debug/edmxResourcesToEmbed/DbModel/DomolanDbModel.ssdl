@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DomolanDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Акции">
+    <Key>
+      <PropertyRef Name="КодАкции" />
+    </Key>
+    <Property Name="КодАкции" Type="int" Nullable="false" />
+    <Property Name="Акции" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="Скорость интернета" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Wi-Fi маршрутизатор" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="Антивирус Dr.Web" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="Цифровое ТВ" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Облачный Видеомониторниг" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="Развлекательные ресурсы" Type="char" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Договоры">
+    <Key>
+      <PropertyRef Name="КодДоговора" />
+    </Key>
+    <Property Name="КодДоговора" Type="int" Nullable="false" />
+    <Property Name="КодАкции" Type="int" Nullable="false" />
+    <Property Name="КодОборудования" Type="int" Nullable="false" />
+    <Property Name="КодСвязи" Type="int" Nullable="false" />
+    <Property Name="КодСотрудники" Type="int" Nullable="false" />
+    <Property Name="КодТарифы" Type="int" Nullable="false" />
+    <Property Name="Номер Договора" Type="int" Nullable="false" />
+    <Property Name="Дата договора" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Оборудование">
+    <Key>
+      <PropertyRef Name="КодОборудования" />
+    </Key>
+    <Property Name="КодОборудования" Type="int" Nullable="false" />
+    <Property Name="Название" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="Стоимость" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Связи">
+    <Key>
+      <PropertyRef Name="КодСвязи" />
+    </Key>
+    <Property Name="КодСвязи" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Родительская сущность" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="Дочерняя сущность" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="Тип связи" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="КодСотрудника" />
+    </Key>
+    <Property Name="КодСотрудника" Type="int" Nullable="false" />
+    <Property Name="Фамилия" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Имя" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Отчество" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="Дата рождения" Type="date" Nullable="false" />
+    <Property Name="Должность" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="Логин" Type="nvarchar" MaxLength="50" />
+    <Property Name="Пароль" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Тарифы">
+    <Key>
+      <PropertyRef Name="КодТарифа" />
+    </Key>
+    <Property Name="КодТарифа" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Тариф" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Стоимость тарифа" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Скорость интернета" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Стоимость услуги" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Договоры_Акции">
+    <End Role="Акции" Type="Self.Акции" Multiplicity="1" />
+    <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Акции">
+        <PropertyRef Name="КодАкции" />
+      </Principal>
+      <Dependent Role="Договоры">
+        <PropertyRef Name="КодАкции" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Договоры_Оборудование">
+    <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="1" />
+    <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Оборудование">
+        <PropertyRef Name="КодОборудования" />
+      </Principal>
+      <Dependent Role="Договоры">
+        <PropertyRef Name="КодОборудования" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Договоры_Связи">
+    <End Role="Связи" Type="Self.Связи" Multiplicity="1" />
+    <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Связи">
+        <PropertyRef Name="КодСвязи" />
+      </Principal>
+      <Dependent Role="Договоры">
+        <PropertyRef Name="КодОборудования" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Договоры_Сотрудники">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+    <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="КодСотрудника" />
+      </Principal>
+      <Dependent Role="Договоры">
+        <PropertyRef Name="КодСотрудники" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Договоры_Тарифы">
+    <End Role="Тарифы" Type="Self.Тарифы" Multiplicity="1" />
+    <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Тарифы">
+        <PropertyRef Name="КодТарифа" />
+      </Principal>
+      <Dependent Role="Договоры">
+        <PropertyRef Name="КодТарифы" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DomolanDbModelStoreContainer">
+    <EntitySet Name="Акции" EntityType="Self.Акции" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Договоры" EntityType="Self.Договоры" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Оборудование" EntityType="Self.Оборудование" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Связи" EntityType="Self.Связи" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Тарифы" EntityType="Self.Тарифы" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Договоры_Акции" Association="Self.FK_Договоры_Акции">
+      <End Role="Акции" EntitySet="Акции" />
+      <End Role="Договоры" EntitySet="Договоры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Договоры_Оборудование" Association="Self.FK_Договоры_Оборудование">
+      <End Role="Оборудование" EntitySet="Оборудование" />
+      <End Role="Договоры" EntitySet="Договоры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Договоры_Связи" Association="Self.FK_Договоры_Связи">
+      <End Role="Связи" EntitySet="Связи" />
+      <End Role="Договоры" EntitySet="Договоры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Договоры_Сотрудники" Association="Self.FK_Договоры_Сотрудники">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Договоры" EntitySet="Договоры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Договоры_Тарифы" Association="Self.FK_Договоры_Тарифы">
+      <End Role="Тарифы" EntitySet="Тарифы" />
+      <End Role="Договоры" EntitySet="Договоры" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

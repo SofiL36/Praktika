@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DomolanDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Акции">
+    <Key>
+      <PropertyRef Name="КодАкции" />
+    </Key>
+    <Property Name="КодАкции" Type="Int32" Nullable="false" />
+    <Property Name="Акции1" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Скорость_интернета" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Wi_Fi_маршрутизатор" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Антивирус_Dr_Web" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Цифровое_ТВ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Облачный_Видеомониторниг" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Развлекательные_ресурсы" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Договоры" Relationship="Self.FK_Договоры_Акции" FromRole="Акции" ToRole="Договоры" />
+  </EntityType>
+  <EntityType Name="Договоры">
+    <Key>
+      <PropertyRef Name="КодДоговора" />
+    </Key>
+    <Property Name="КодДоговора" Type="Int32" Nullable="false" />
+    <Property Name="КодАкции" Type="Int32" Nullable="false" />
+    <Property Name="КодОборудования" Type="Int32" Nullable="false" />
+    <Property Name="КодСвязи" Type="Int32" Nullable="false" />
+    <Property Name="КодСотрудники" Type="Int32" Nullable="false" />
+    <Property Name="КодТарифы" Type="Int32" Nullable="false" />
+    <Property Name="Номер_Договора" Type="Int32" Nullable="false" />
+    <Property Name="Дата_договора" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Акции" Relationship="Self.FK_Договоры_Акции" FromRole="Договоры" ToRole="Акции" />
+    <NavigationProperty Name="Оборудование" Relationship="Self.FK_Договоры_Оборудование" FromRole="Договоры" ToRole="Оборудование" />
+    <NavigationProperty Name="Связи" Relationship="Self.FK_Договоры_Связи" FromRole="Договоры" ToRole="Связи" />
+    <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Договоры_Сотрудники" FromRole="Договоры" ToRole="Сотрудники" />
+    <NavigationProperty Name="Тарифы" Relationship="DomolanDbModel.FK_Договоры_Тарифы" FromRole="Договоры" ToRole="Тарифы" />
+  </EntityType>
+  <EntityType Name="Оборудование">
+    <Key>
+      <PropertyRef Name="КодОборудования" />
+    </Key>
+    <Property Name="КодОборудования" Type="Int32" Nullable="false" />
+    <Property Name="Название" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Стоимость" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Договоры" Relationship="Self.FK_Договоры_Оборудование" FromRole="Оборудование" ToRole="Договоры" />
+  </EntityType>
+  <EntityType Name="Связи">
+    <Key>
+      <PropertyRef Name="КодСвязи" />
+    </Key>
+    <Property Name="КодСвязи" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Родительская_сущность" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Дочерняя_сущность" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Тип_связи" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Договоры" Relationship="Self.FK_Договоры_Связи" FromRole="Связи" ToRole="Договоры" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="КодСотрудника" />
+    </Key>
+    <Property Name="КодСотрудника" Type="Int32" Nullable="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Имя" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Должность" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Договоры" Relationship="Self.FK_Договоры_Сотрудники" FromRole="Сотрудники" ToRole="Договоры" />
+  </EntityType>
+  <Association Name="FK_Договоры_Акции">
+    <End Role="Акции" Type="Self.Акции" Multiplicity="1" />
+    <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Акции">
+        <PropertyRef Name="КодАкции" />
+      </Principal>
+      <Dependent Role="Договоры">
+        <PropertyRef Name="КодАкции" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Договоры_Оборудование">
+    <End Role="Оборудование" Type="Self.Оборудование" Multiplicity="1" />
+    <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Оборудование">
+        <PropertyRef Name="КодОборудования" />
+      </Principal>
+      <Dependent Role="Договоры">
+        <PropertyRef Name="КодОборудования" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Договоры_Связи">
+    <End Role="Связи" Type="Self.Связи" Multiplicity="1" />
+    <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Связи">
+        <PropertyRef Name="КодСвязи" />
+      </Principal>
+      <Dependent Role="Договоры">
+        <PropertyRef Name="КодОборудования" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Договоры_Сотрудники">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+    <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="КодСотрудника" />
+      </Principal>
+      <Dependent Role="Договоры">
+        <PropertyRef Name="КодСотрудники" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DomolanDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Акции" EntityType="Self.Акции" />
+    <EntitySet Name="Договоры" EntityType="Self.Договоры" />
+    <EntitySet Name="Оборудование" EntityType="Self.Оборудование" />
+    <EntitySet Name="Связи" EntityType="Self.Связи" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+    <AssociationSet Name="FK_Договоры_Акции" Association="Self.FK_Договоры_Акции">
+      <End Role="Акции" EntitySet="Акции" />
+      <End Role="Договоры" EntitySet="Договоры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Договоры_Оборудование" Association="Self.FK_Договоры_Оборудование">
+      <End Role="Оборудование" EntitySet="Оборудование" />
+      <End Role="Договоры" EntitySet="Договоры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Договоры_Связи" Association="Self.FK_Договоры_Связи">
+      <End Role="Связи" EntitySet="Связи" />
+      <End Role="Договоры" EntitySet="Договоры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Договоры_Сотрудники" Association="Self.FK_Договоры_Сотрудники">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Договоры" EntitySet="Договоры" />
+    </AssociationSet>
+    <EntitySet Name="Тарифы" EntityType="DomolanDbModel.Тарифы" />
+    <AssociationSet Name="FK_Договоры_Тарифы" Association="DomolanDbModel.FK_Договоры_Тарифы">
+      <End Role="Тарифы" EntitySet="Тарифы" />
+      <End Role="Договоры" EntitySet="Договоры" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Тарифы">
+    <Key>
+      <PropertyRef Name="КодТарифа" />
+    </Key>
+    <Property Name="КодТарифа" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Тариф" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Стоимость_тарифа" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Скорость_интернета" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Стоимость_услуги" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Договоры" Relationship="DomolanDbModel.FK_Договоры_Тарифы" FromRole="Тарифы" ToRole="Договоры" />
+  </EntityType>
+  <Association Name="FK_Договоры_Тарифы">
+    <End Type="DomolanDbModel.Тарифы" Role="Тарифы" Multiplicity="1" />
+    <End Type="DomolanDbModel.Договоры" Role="Договоры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Тарифы">
+        <PropertyRef Name="КодТарифа" />
+      </Principal>
+      <Dependent Role="Договоры">
+        <PropertyRef Name="КодТарифы" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

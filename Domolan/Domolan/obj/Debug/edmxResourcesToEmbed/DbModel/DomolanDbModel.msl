@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DomolanDbModelStoreContainer" CdmEntityContainer="DomolanDbEntities">
+    <EntitySetMapping Name="Акции">
+      <EntityTypeMapping TypeName="DomolanDbModel.Акции">
+        <MappingFragment StoreEntitySet="Акции">
+          <ScalarProperty Name="КодАкции" ColumnName="КодАкции" />
+          <ScalarProperty Name="Акции1" ColumnName="Акции" />
+          <ScalarProperty Name="Скорость_интернета" ColumnName="Скорость интернета" />
+          <ScalarProperty Name="Wi_Fi_маршрутизатор" ColumnName="Wi-Fi маршрутизатор" />
+          <ScalarProperty Name="Антивирус_Dr_Web" ColumnName="Антивирус Dr.Web" />
+          <ScalarProperty Name="Цифровое_ТВ" ColumnName="Цифровое ТВ" />
+          <ScalarProperty Name="Облачный_Видеомониторниг" ColumnName="Облачный Видеомониторниг" />
+          <ScalarProperty Name="Развлекательные_ресурсы" ColumnName="Развлекательные ресурсы" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Договоры">
+      <EntityTypeMapping TypeName="DomolanDbModel.Договоры">
+        <MappingFragment StoreEntitySet="Договоры">
+          <ScalarProperty Name="КодДоговора" ColumnName="КодДоговора" />
+          <ScalarProperty Name="КодАкции" ColumnName="КодАкции" />
+          <ScalarProperty Name="КодОборудования" ColumnName="КодОборудования" />
+          <ScalarProperty Name="КодСвязи" ColumnName="КодСвязи" />
+          <ScalarProperty Name="КодСотрудники" ColumnName="КодСотрудники" />
+          <ScalarProperty Name="КодТарифы" ColumnName="КодТарифы" />
+          <ScalarProperty Name="Номер_Договора" ColumnName="Номер Договора" />
+          <ScalarProperty Name="Дата_договора" ColumnName="Дата договора" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Оборудование">
+      <EntityTypeMapping TypeName="DomolanDbModel.Оборудование">
+        <MappingFragment StoreEntitySet="Оборудование">
+          <ScalarProperty Name="КодОборудования" ColumnName="КодОборудования" />
+          <ScalarProperty Name="Название" ColumnName="Название" />
+          <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Связи">
+      <EntityTypeMapping TypeName="DomolanDbModel.Связи">
+        <MappingFragment StoreEntitySet="Связи">
+          <ScalarProperty Name="КодСвязи" ColumnName="КодСвязи" />
+          <ScalarProperty Name="Родительская_сущность" ColumnName="Родительская сущность" />
+          <ScalarProperty Name="Дочерняя_сущность" ColumnName="Дочерняя сущность" />
+          <ScalarProperty Name="Тип_связи" ColumnName="Тип связи" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Сотрудники">
+      <EntityTypeMapping TypeName="DomolanDbModel.Сотрудники">
+        <MappingFragment StoreEntitySet="Сотрудники">
+          <ScalarProperty Name="КодСотрудника" ColumnName="КодСотрудника" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Дата_рождения" ColumnName="Дата рождения" />
+          <ScalarProperty Name="Должность" ColumnName="Должность" />
+          <ScalarProperty Name="Логин" ColumnName="Логин" />
+          <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Тарифы">
+      <EntityTypeMapping TypeName="DomolanDbModel.Тарифы">
+        <MappingFragment StoreEntitySet="Тарифы">
+          <ScalarProperty Name="Стоимость_услуги" ColumnName="Стоимость услуги" />
+          <ScalarProperty Name="Скорость_интернета" ColumnName="Скорость интернета" />
+          <ScalarProperty Name="Стоимость_тарифа" ColumnName="Стоимость тарифа" />
+          <ScalarProperty Name="Тариф" ColumnName="Тариф" />
+          <ScalarProperty Name="КодТарифа" ColumnName="КодТарифа" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
